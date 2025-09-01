@@ -1,0 +1,12 @@
+
+.preloader svg {
+ animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes spin {
+
+  100% { transform: rotate(360deg); }
+}

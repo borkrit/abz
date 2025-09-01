@@ -1,0 +1,42 @@
+
+.hero{
+  max-width: 1170px;
+  width: 100%;
+  margin: 0 auto;
+  height: 600px;
+  align-content: center;
+  color: white;
+  text-align: center;
+  background-position:0 bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  position: relative;
+
+  @media (max-width: 768px) {
+    height: 500px;
+    padding-inline: 16px;
+
+  }
+  &:before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &__wrapper{
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+
+  }
+  &__content{
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    margin-bottom: 32px;
+  }
+
+}

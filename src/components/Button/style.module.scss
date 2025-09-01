@@ -1,0 +1,15 @@
+.button{
+  width: 100px;
+  background-color: #F4E041;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 80px;
+  padding-block: 4px;
+
+  &:hover{
+    background-color: #FFE302;
+  }
+  &[disabled]{
+    background-color: #B4B4B4;
+    color: white;
+  }
+}

@@ -1,0 +1,35 @@
+.upload {
+  &__wrapper {
+    display: flex;
+    position:relative;
+    color:rgba(0, 0, 0, 0.87);
+    &__error{
+      border-radius: 4px;
+      color:red;
+      border: 2px solid red;
+    }
+  }
+
+  &__btn{
+    width: 100%;
+    max-width: 83px;
+    border:1px solid rgba(0, 0, 0, 0.87);
+    border-radius: 4px 0 0 4px;
+    background-color: transparent;
+
+    &:hover{
+      background-color: rgba(0, 0, 0, 0.22);
+    }
+    &__error{
+      border-color: transparent;
+      border-right: 2px solid red;
+
+    }
+  }
+
+  .error{
+    position: absolute;
+    top: calc(100% + 3px);
+    color: red;
+  }
+}
