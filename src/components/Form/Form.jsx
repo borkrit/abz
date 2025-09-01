@@ -189,7 +189,7 @@ const Form = () => {
         <section id={'form'}>
             <Container contentCenter={true}>
                 {!successFormSend && <>
-                    <Text tag={'h2'} type={'heading'}>Working with Post request </Text>
+                    <Text tag={'h2'} type={'heading'}>Working with POST request </Text>
                     <form action="" style={{
                         maxWidth: '380px',
                         marginBlock: '50px',
