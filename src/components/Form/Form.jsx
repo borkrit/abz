@@ -9,23 +9,23 @@ import {useUsers} from "../../context.jsx";
 
 
 const validation = {
-    name:{
-        required:true,
+    name: {
+        required: true,
         length: {min: 2, max: 60},
     },
-    email:{
+    email: {
         required: true,
-        pattern:/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/
+        pattern: /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/
     },
-    phone:{
-        required:true,
+    phone: {
+        required: true,
         pattern: /^[+][380][0-9]{10}/
     },
-    position_id:{
-        required:true,
+    position_id: {
+        required: true,
     },
-    photo:{
-        required:true,
+    photo: {
+        required: true,
     }
 
 }
@@ -43,7 +43,7 @@ const Form = () => {
 
     })
     const errorList = useRef([]);
-    const disableBtn  = useRef(true);
+    const disableBtn = useRef(true);
 
 
     useEffect(() => {
@@ -57,8 +57,8 @@ const Form = () => {
         fetchPosition()
     }, []);
 
-    const getToken = async ()=>{
-      const res =  await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token',{
+    const getToken = async () => {
+        const res = await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -72,18 +72,18 @@ const Form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(errorList.current.length > 0){
+        if (errorList.current.length > 0) {
             return;
         }
 
-       const token =  await getToken();
+        const token = await getToken();
         const formDataReq = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
             formDataReq.append(key, value);
         })
 
         disableBtn.current = true;
-       const res = await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
+        const res = await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -93,12 +93,12 @@ const Form = () => {
         })
         const data = await res.json();
 
-        if (data?.success){
+        if (data?.success) {
             setSuccessFormSend(true);
             setTimeout(() => {
                 setSuccessFormSend(false);
             }, 4000);
-            fetchData(1,"RESET")
+            fetchData(1, "RESET")
         }
 
 
@@ -106,14 +106,14 @@ const Form = () => {
 
     const handleCheckBtnDisable = (state) => {
         const isValid = Object.values(state).every((item) => !!item);
-        if(isValid && errorList.current.length === 0) return disableBtn.current=false
-        return disableBtn.current=true
+        if (isValid && errorList.current.length === 0) return disableBtn.current = false
+        return disableBtn.current = true
 
     }
 
     const handleSetDataForm = (e) => {
 
-        if(validation[e.target.name]){
+        if (validation[e.target.name]) {
             Object.entries(validation[e.target.name]).forEach(([key, value]) => {
                 const val = e.target.value.trim();
 
@@ -141,13 +141,13 @@ const Form = () => {
                     }
                 }
 
-                if(key === "pattern"){
+                if (key === "pattern") {
 
-                    if(!new RegExp(value).test(val)){
+                    if (!new RegExp(value).test(val)) {
                         if (!errorList.current.includes(e.target.name)) {
                             errorList.current.push(e.target.name);
                         }
-                    }else{
+                    } else {
                         errorList.current = errorList.current.filter(
                             (item) => item !== e.target.name
                         );
@@ -164,13 +164,13 @@ const Form = () => {
         handleCheckBtnDisable(newState)
     }
     const handleSetPhoto = (e) => {
-        const newState = {...formData,'photo': e,}
+        const newState = {...formData, 'photo': e,}
         setFormData(newState)
 
         handleCheckBtnDisable(newState)
     }
 
-    const formatterNumber =(e)=>{
+    const formatterNumber = (e) => {
         let raw = e.target.value.replace(/[\D]/g, ""); // оставить только цифры
 
         if (!raw.startsWith("380")) {
@@ -208,11 +208,14 @@ const Form = () => {
                                    variant="outlined"
                                    helperText={
                                        errorList.current.includes('name') && (
-                                       formData['name'].length === 0 ? "should be not empty":
-                                       formData['name'].length < 2 ? 'should be more than 2':
-                                           formData['name'].length > 60 ?'should be less than 60':null)
+                                           formData['name'].length === 0 ? "should be not empty" :
+                                               formData['name'].length < 2 ? 'should be more than 2' :
+                                                   formData['name'].length > 60 ? 'should be less than 60' : null)
                                    }
                                    sx={{
+                                       '& .MuiInputBase-input': {
+                                           padding: '15.5px 16px',
+                                       },
                                        '& .MuiFormHelperText-root.Mui-error': {
 
                                            position: 'absolute',
@@ -222,27 +225,31 @@ const Form = () => {
                         />
                         <TextField
                             error={errorList.current.includes('email')}
-                            fullWidth name={'email'} type={'email'} onChange={handleSetDataForm} id="email" label="Email"
-                                   variant="outlined"
+                            fullWidth name={'email'} type={'email'} onChange={handleSetDataForm} id="email"
+                            label="Email"
+                            variant="outlined"
                             sx={{
+                                '& .MuiInputBase-input': {
+                                    padding: '15.5px 16px',
+                                },
                                 '& .MuiFormHelperText-root.Mui-error': {
 
                                     position: 'absolute',
                                     top: '100%'
                                 }
                             }}
-                                   helperText={
-                                       errorList.current.includes('email') ? "should be not empty":null
-                        }
+                            helperText={
+                                errorList.current.includes('email') ? "should be not empty" : null
+                            }
                         />
                         <TextField
                             error={errorList.current.includes('phone')}
                             fullWidth
                             onChange={handleSetDataForm}
-                            onFocus={(e)=>{
+                            onFocus={(e) => {
                                 e.target.value = e.target.value.trim().replace(/[^\d+]/g, "");
                             }}
-                            onBlur={(e)=>
+                            onBlur={(e) =>
                                 formatterNumber(e)
                             }
                             id="phone"
@@ -253,6 +260,9 @@ const Form = () => {
                             }}
                             helperText="+38 (XXX) XXX - XX - XX"
                             sx={{
+                                '& .MuiInputBase-input': {
+                                    padding: '15.5px 16px',
+                                },
                                 '& .MuiFormHelperText-root': {
 
                                     position: 'absolute',
@@ -265,16 +275,16 @@ const Form = () => {
 
                         <FormControl
                             sx={{
-                                marginBlock:'-7px -3px',
+                                marginBlock: '-7px -3px',
 
                             }}
                         >
                             <FormLabel
                                 sx={{
                                     textAlign: 'start',
-                                    color:'rgba(0, 0, 0, 0.87)',
+                                    color: 'rgba(0, 0, 0, 0.87)',
                                     marginBottom: '11px',
-                                    "&.Mui-focused": {  color:'rgba(0, 0, 0, 0.87)'}
+                                    "&.Mui-focused": {color: 'rgba(0, 0, 0, 0.87)'}
                                 }}
                                 id="demo-radio-buttons-group-label">
                                 <Text>
@@ -295,22 +305,22 @@ const Form = () => {
                                     position?.map((item, index) => (
                                         <FormControlLabel
                                             sx={{
-                                                '& .Mui-checked':{
-                                                    color:'#00BDD3'
+                                                '& .Mui-checked': {
+                                                    color: '#00BDD3'
                                                 },
-                                                '& .Mui-checked:hover':{
-                                                    color:' rgba(0, 228, 255, 0.38)'
+                                                '& .Mui-checked:hover': {
+                                                    color: ' rgba(0, 228, 255, 0.38)'
                                                 }
                                             }}
                                             key={index} value={item.id} control={<Radio
-                                        sx={{
-                                            color:'#D0CFCF',
-                                            paddingBlock: 0,
+                                            sx={{
+                                                color: '#D0CFCF',
+                                                paddingBlock: 0,
 
-                                            '&.Mui-checked': {
-                                                color: '#00BDD3',
-                                            }
-                                        }}
+                                                '&.Mui-checked': {
+                                                    color: '#00BDD3',
+                                                }
+                                            }}
                                         />}
                                             label={<Text>{item.name}</Text>}/>
                                     ))
@@ -322,7 +332,7 @@ const Form = () => {
 
                         <Button
                             customCss={{marginInline: 'auto'}}
-                            disabled={disableBtn.current} handleClick={handleSubmit} >
+                            disabled={disableBtn.current} handleClick={handleSubmit}>
                             Sign up
                         </Button>
                     </form>

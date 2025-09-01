@@ -70,8 +70,8 @@ const Upload =({name,setPhoto})=>{
                             },
                         }}
                         sx={{
-                            '& .MuiInputBase-root': {
-
+                            '& .MuiInputBase-input':{
+                                padding: '15.5px 16px',
                             },
                             '& .MuiOutlinedInput-notchedOutline':{
                                 borderRadius: '0px 4px 4px 0px',
