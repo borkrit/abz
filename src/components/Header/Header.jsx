@@ -18,7 +18,7 @@ const Header = () => {
                         </div>
                         <div className={st.header__action}>
                             <Button data-href={'users'} handleClick={scrollToElement}>
-                                User
+                                Users
                             </Button>
                             <Button data-href={'form'} handleClick={scrollToElement}>
                                 Sign up
