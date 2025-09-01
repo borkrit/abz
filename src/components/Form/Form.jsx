@@ -280,9 +280,7 @@ const Form = () => {
                                         sx={{
                                             color:'#D0CFCF',
                                             paddingBlock: 0,
-                                            '& .MuiSvgIcon-root': {
-                                                fontSize: 20,
-                                            },
+
                                             '&.Mui-checked': {
                                                 color: '#00BDD3',
                                             }

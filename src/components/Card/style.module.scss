@@ -7,9 +7,12 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 10px;
   width: 100%;
   overflow: hidden;
+  @media (min-width: 1024px) {
+    border-radius: 16px;
+  }
 
   button{
     width: 100%;
