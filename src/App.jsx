@@ -9,24 +9,22 @@ import {UsersProvider} from "./context.jsx";
 import Preloader from "./components/Preloader/Preloader.jsx";
 
 
-
-
 function App() {
 
-  return (
-    <>
-        <Header/>
-        <Layout>
-            <Hero/>
-            <UsersProvider >
-                <Users/>
-                <Form/>
-            </UsersProvider>
+    return (
+        <>
+            <Header/>
+            <Layout>
+                <Hero/>
+                <UsersProvider>
+                    <Users/>
+                    <Form/>
+                </UsersProvider>
 
-        </Layout>
-          <Footer />
-    </>
-  )
+            </Layout>
+            {/*<Footer />*/}
+        </>
+    )
 }
 
 export default App
