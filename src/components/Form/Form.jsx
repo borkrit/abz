@@ -212,11 +212,25 @@ const Form = () => {
                                        formData['name'].length < 2 ? 'should be more than 2':
                                            formData['name'].length > 60 ?'should be less than 60':null)
                                    }
+                                   sx={{
+                                       '& .MuiFormHelperText-root.Mui-error': {
+
+                                           position: 'absolute',
+                                           top: '100%'
+                                       }
+                                   }}
                         />
                         <TextField
                             error={errorList.current.includes('email')}
                             fullWidth name={'email'} type={'email'} onChange={handleSetDataForm} id="email" label="Email"
                                    variant="outlined"
+                            sx={{
+                                '& .MuiFormHelperText-root.Mui-error': {
+
+                                    position: 'absolute',
+                                    top: '100%'
+                                }
+                            }}
                                    helperText={
                                        errorList.current.includes('email') ? "should be not empty":null
                         }
@@ -238,11 +252,23 @@ const Form = () => {
                                 maxLength: 13,
                             }}
                             helperText="+38 (XXX) XXX - XX - XX"
+                            sx={{
+                                '& .MuiFormHelperText-root': {
+
+                                    position: 'absolute',
+                                    top: '100%'
+                                }
+                            }}
 
                         />
 
 
-                        <FormControl>
+                        <FormControl
+                            sx={{
+                                marginBlock:'-7px -3px',
+
+                            }}
+                        >
                             <FormLabel
                                 sx={{
                                     textAlign: 'start',
